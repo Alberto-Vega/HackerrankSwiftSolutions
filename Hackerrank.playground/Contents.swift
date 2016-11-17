@@ -206,9 +206,13 @@ print(array[m - k + n])
 }
 
 
-//: 
+//: Super Reduced String
+// var a = String(readLine()!)
 
-var sampleString = "baab"
+
+
+var sampleString = "aa"
+var sampleString1 = "baab"
 var sampleString2 = "aaabccddd"
 var charArray =  Array(sampleString.characters)
 
@@ -216,7 +220,6 @@ func superReduce(string: String) {
 var charArray =  Array(string.characters)
 
 var index = 0
-print("index + 1: \(index + 1)")
  while index + 1 < charArray.count  {
     if  charArray[index] == charArray[index + 1] {
         charArray.remove(at: index)
@@ -225,12 +228,13 @@ print("index + 1: \(index + 1)")
         index += 1
     }
 }
-    if charArray.count == 2 && charArray[0] == charArray[1] {
+    if charArray.count == 2 && charArray[0] == charArray[1] || charArray.isEmpty {
         print("Empty String")
         return
     }
-print(charArray)
+print(String(charArray))
 }
 
-superReduce(string: sampleString2)
+superReduce(string: sampleString)
+
 
