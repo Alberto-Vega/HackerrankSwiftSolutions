@@ -237,4 +237,73 @@ print(String(charArray))
 
 superReduce(string: sampleString)
 
+/*:
+ Mini-Max Sum Hackerrank
+ Given five positive integers, find the minimum and maximum values that can be calculated by summing exactly four of the five integers. Then print the respective minimum and maximum values as a single line of two space-separated long integers.
+ 
+ Input Format
+ 
+ A single line of five space-separated integers.
+ 
+ Constraints
+ 
+ Each integer is in the inclusive range [1,10^9].
+ Output Format
+ 
+ Print two space-separated long integers denoting the respective minimum and maximum values that can be calculated by summing exactly four of the five integers. (The output can be greater than 32 bit integer.)
+ 
+ Sample Input
+ 
+ 1 2 3 4 5
+ Sample Output
+ 
+ 10 14
+ Explanation
+ 
+ Our initial numbers are 1, 2, 3, 4, and 5. We can calculate the following sums using four of the five integers:
+ 
+ If we sum everything except 5, our sum is 1+2+3+4=10.
+ If we sum everything except 4, our sum is 1+2+3+5=11.
+ If we sum everything except 3, our sum is 1+2+4+5=12.
+ If we sum everything except 2, our sum is 1+3+4+5=13.
+ If we sum everything except 1, our sum is 2+3+4+5=12.
+ As you can see, the minimal sum is 10 and the maximal sum is 14. Thus, we print these minimal and maximal sums as two space-separated integers on a new line.
+ 
+ Hints: Beware of integer overflow! Use 64-bit Integer.
+ 
+ We can minimize the sum by excluding the largest element from the sum.
+ We can maximize the sum by excluding the smallest element from the sum.
+ 
+ So we can just find min and max number and substract them from the total sum so we can find the total.
+ 
+ */
 
+func minMaxSum(numbers:[Int]) {
+    if numbers.count < 5 {
+        return
+    }
+    // create a min and max variables and set them to the first item in the array.
+    // These will keep track of the smallest and largest numbers.
+    // create a totalSum variable to sum all the numbers in the array
+    
+    var minimum = numbers[0], maximum = numbers[0], totalSum = 0
+    // Iterate the array and at each step:
+    for number in numbers {
+        // Add the current number to the totalSum.
+        totalSum += number
+        // compare the current number to min and max variables and update
+        // them if necessary.
+        
+        minimum = min(minimum, number)
+        maximum = max(maximum, number)
+    }
+    print("\(totalSum-maximum) \(totalSum-minimum)")
+}
+
+//In hackerrank you have to run it like this:
+// read the sample input array from stdin:
+// var numericArray = readLine()!.characters.split(separator:" ").map{Int(String($0))!}
+//call the function passint numeric array
+// minMaxSum(numbers: numericArray)
+
+minMaxSum(numbers: [1,2,3,4,5])
